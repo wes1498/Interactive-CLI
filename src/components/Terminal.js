@@ -42,6 +42,8 @@ class Terminal extends Component {
     )
     const customOutputs = Outputs.create([textOutput])
 
+    const loadHandler = <span style={{color: 'purple'}}>load-handler.git</span>
+
     const customFileSystem = FileSystem.create({
       "/AboutMe": {},
       "/Projects": {},
@@ -58,7 +60,18 @@ class Terminal extends Component {
         content: "This is a text file",
         canModify: false,
       },
-      "/home/nested/directory/file": { content: "End of nested directory!" },
+      "/Projects/load-handler.git": {
+        content: "This is a text file",
+        canModify: false,
+      },
+      "/Projects/tictactoe.git": {
+        content: "This is a text file",
+        canModify: false,
+      },
+      "/Projects/hamiltonian-paths.git": {
+        content: "This is a text file",
+        canModify: false,
+      },
     })
 
     this.state = {
@@ -70,12 +83,13 @@ class Terminal extends Component {
       inputStr: "",
       promptSymbol: "wesley:/~ ",
       currentDir: "",
+      showTerminal: false
     }
   }
 
   render() {
     return (
-      <div id='___terminal'>
+       <div id='___terminal'>
         <ReactTerminal
           emulatorState={this.state.emulatorState}
           inputStr={this.state.inputStr}
@@ -92,7 +106,6 @@ class Terminal extends Component {
             width: "100%",
             height: "50vh",
           }}
-          onInputChange={inputStr => this.setState({ inputStr })}
           onStateChange={emulatorState => this.setState({ emulatorState })}
         />
       </div>

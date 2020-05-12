@@ -14,11 +14,42 @@ details,
 figcaption,
 figure,
 footer,
-header,
-main,
+header {
+  text-align: center;
+  font-family: 'Mandali', sans-serif;
+  font-size: x-large;
+  color: #000;
+  max-width: 960;
+  padding: 1.5rem 0rem;
+
+}
+.text {
+  display: block;
+}
+div {
+  display: block;
+}
+.content {
+  text-align: center;
+}
+main {
+  display: block;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: small;
+  color: #000;
+  line-height: 1.1rem;
+  margin-right: 500px;
+  margin-left: 500px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 500px;
+  margin-inline-end: 500px;
+}
 menu,
 nav,
-section,
+section {
+  display: block;
+}
 summary {
   display: block;
 }
@@ -100,11 +131,11 @@ samp {
 figure {
   margin: 1em 40px;
 }
-hr {
+/* hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
-}
+} */
 button,
 input,
 optgroup,
@@ -238,21 +269,12 @@ h1 {
   line-height: 1.1;
 }
 h2 {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
-  color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-  font-size: 1.62671rem;
-  line-height: 1.1;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: medium;
+  color: #000;
+  max-width: 960;
+  padding: 0rem 0rem;
 }
 h3 {
   margin-left: 0;
@@ -474,17 +496,15 @@ iframe {
   margin-bottom: 1.45rem;
 }
 hr {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: calc(1.45rem - 1px);
-  background: hsla(0, 0%, 0%, 0.2);
-  border: none;
-  height: 1px;
+  height: 4px;
+  background-color: #000;
+  text-align: center;
+  color: #000;
+  border-width:0;
+  margin-left: 580px;
+  margin-right: 580px;
+  margin-top: 9px;
+  margin-bottom: 0.1px;
 }
 address {
   margin-left: 0;
