@@ -16,11 +16,14 @@ figure,
 footer,
 header {
   text-align: center;
-  font-family: 'Mandali', sans-serif;
+  display: block;
+  letter-spacing: 0.2rem;
+  /* font-family: ; */
   font-size: x-large;
   color: #000;
-  max-width: 960;
-  padding: 1.5rem 0rem;
+
+  padding-bottom: 0rem;
+  padding-top: 5rem;
 
 }
 .text {
@@ -30,16 +33,21 @@ div {
   display: block;
 }
 .content {
-  text-align: center;
+
+  text-align: justify;
+  padding-top: 0rem;
 }
 main {
-  display: block;
+  text-align: justify;
+  /* flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start; */
   font-family: 'Times New Roman', Times, serif;
   font-size: small;
   color: #000;
   line-height: 1.1rem;
-  margin-right: 500px;
-  margin-left: 500px;
+  /* margin-right: 500px;
+  margin-left: 500px; */
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 500px;
@@ -270,11 +278,12 @@ h1 {
 }
 h2 {
   text-align: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: medium;
   color: #000;
   max-width: 960;
-  padding: 0rem 0rem;
+  padding: 0rem 9rem;
+
 }
 h3 {
   margin-left: 0;
@@ -501,10 +510,12 @@ hr {
   text-align: center;
   color: #000;
   border-width:0;
-  margin-left: 580px;
-  margin-right: 580px;
-  margin-top: 9px;
-  margin-bottom: 0.1px;
+  margin-left: 540px;
+  margin-right: 540px;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
 address {
   margin-left: 0;

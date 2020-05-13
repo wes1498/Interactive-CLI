@@ -4,14 +4,16 @@ import React from "react"
 import "./layout.css"
 
 const Header = () => (
-  <header>
+  <div>
+    <header>
       WESLEY SEQUEIRA
-      <hr/>
+    </header>
+    <hr/>
       <h2>
-        Software Developer
-      </h2>
-      <hr/>
-  </header>
+      SOFTWARE DEVELOPER
+    </h2>
+    <hr/>
+  </div>
 )
 
 Header.propTypes = {

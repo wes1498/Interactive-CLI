@@ -23,7 +23,7 @@ class IndexPage extends Component {
   }
   handleKeyDown(event) {
     if (event.keyCode == 192) {
-      console.log("it worked")
+      event.preventDefault()
       this.setState({ showTerminal: !this.state.showTerminal });
     }
   }

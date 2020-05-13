@@ -23,19 +23,25 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div id="content">
-      <section class="text">
-        <Header siteTitle={data.site.siteMetadata.title} />
+    <div className="content">
+      <Header siteTitle={data.site.siteMetadata.title} />
         <main>
-          Hi, my name is Wesley! 
-
-          I'm currently a fourth year student majoring in Business and Computer Science at the University of British Columbia.
-          Growing up, I have had an avid interest in technology. My curiosity for tech motivated me to take intensive courses to better understand software programs as well as hardware elements. While my other hobbies include piano and basketball, my interest in technology pushes me to pursue personal projects. As the integration between business and technology industries grow exponentially, it is crucial for business leaders to maintain both a technological and qualitative mindset to remain a valuable competitor.
+          I am currently a fourth year student majoring in Business and Computer Science at the University of British Columbia.
+          Growing up, I have had an avid interest in technology. From tinkering with Lego blocks to creating a fully independent application, I have always been passionate about using my creative mindset to build innovative solutions. 
+        </main>
+        <main>
+          I have primarily worked with applications using .NET Famework, C# and ReactJS during my internship at RBC. However, on the side I am working effortlessly on becoming a more experienced C++ developer.
+        </main>
+        <main>
+          My other hobby includes playing the piano. 
+          What my peers viewed as dreadfully long practices, I saw as an opportunity to play the music I loved. My commitment to learning dramatically improved my piano skills, and placed me top three in the British Columbia Registered Music Teachers’ Association, and successfully completing Grade 9 for the Royal Conservatory of Music and Arts.
+        </main>
+        <main>
+          As the integration between business and technology industries grow exponentially, it is crucial for business leaders to maintain both a technological and qualitative mindset to remain a valuable competitor.
         </main>
         <main>
           For developers, please press ` on this page to open a terminal to navigate this website. If not or you're on mobile, click this paragraph and scroll down.
-        </main>
-      </section>    
+        </main>  
       <footer>
 
       </footer>
