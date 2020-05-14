@@ -1,6 +1,4 @@
 import React, { Component } from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Terminal from "../components/terminal"
@@ -22,7 +20,7 @@ class IndexPage extends Component {
     document.body.removeEventListener("keydown", this.handleKeyDown);
   }
   handleKeyDown(event) {
-    if (event.keyCode == 192) {
+    if (event.keyCode === 192) {
       event.preventDefault()
       this.setState({ showTerminal: !this.state.showTerminal });
     }
@@ -31,7 +29,7 @@ class IndexPage extends Component {
     const showTerminal = this.state.showTerminal;
     return (
       <>
-        {showTerminal && <Terminal/>}
+      {showTerminal && <Terminal/>}
         <SEO title="Home" />
         <Layout/>
       </>

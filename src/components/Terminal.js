@@ -5,13 +5,11 @@ import {
   EmulatorState,
   OutputFactory,
   CommandMapping,
-  EnvironmentVariables,
   FileSystem,
-  History,
   Outputs,
   defaultCommandMapping,
   Emulator,
-} from "javascript-terminal"
+} from "../../terminal/src"
 
 const welcomeMessage = <div>
 <b style={{color: "aqua"}}>Hello, My name is Wesley Sequeira!</b>
@@ -42,8 +40,6 @@ class Terminal extends Component {
     )
     const customOutputs = Outputs.create([textOutput])
 
-    const loadHandler = <span style={{color: 'purple'}}>load-handler.git</span>
-
     const customFileSystem = FileSystem.create({
       "/AboutMe": {},
       "/Projects": {},
@@ -72,6 +68,20 @@ class Terminal extends Component {
         content: "This is a text file",
         canModify: false,
       },
+    })
+
+    const commandMapping = CommandMapping.create({
+      ...defaultCommandMapping,
+      'open': {
+        'function': (state, opts) => {
+          const input = opts.join(' ');
+
+          return {
+            output: OutputFactory.makeTextOutput(input)
+          };
+        },
+        'optDef': {}
+      }
     })
 
     this.state = {
