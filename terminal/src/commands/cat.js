@@ -14,7 +14,7 @@ const fileToTextOutput = (fs, filePath) => {
     return OutputFactory.makeErrorOutput(err);
   };
 
-  return OutputFactory.makeTextOutput(file.get('content'));
+  return file.get('content')
 };
 
 export const optDef = {};

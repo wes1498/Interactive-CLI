@@ -30,7 +30,7 @@ export const makeHeaderOutput = (cwd, command) => {
 export const makeTextOutput = (content) => {
   return new OutputRecord({
     type: TEXT_OUTPUT_TYPE,
-    content
+    content: content
   });
 };
 

@@ -6,14 +6,6 @@ import * as History1 from './history';
 import * as Outputs1 from './outputs';
 import EmulatorState1 from './EmulatorState';
 
-// export default {
-//   EmulatorState,
-//   CommandMapping,
-//   EnvironmentVariables,
-//   FileSystem,
-//   History,
-//   Outputs
-// }
 export const EmulatorState = EmulatorState1;
 export const CommandMapping = CommandMapping1;
 export const EnvironmentVariables = EnvironmentVariables1;

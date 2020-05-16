@@ -29,12 +29,13 @@ class Terminal extends Component {
 
     const textOutput = OutputFactory.makeTextOutput(welcomeMessage)
     const customOutputs = Outputs.create([textOutput])
+    const textOutputContent = textOutput.content
 
     const customFileSystem = FileSystem.create({
       "/AboutMe": {},
       "/Projects": {},
       "/welcome.txt": {
-        content: ReactDOMServer.renderToStaticMarkup(welcomeMessage),
+        content: textOutput,
         canModify: false,
       },
       "/AboutMe/Resume.pdf": {
@@ -61,7 +62,6 @@ class Terminal extends Component {
         content: "This is a text file",
         canModify: false,
       },
-      "/AboutMe/a/b/cddd/d/hello.txt": { content: "This is a text file" },
     })
 
     this.state = {
