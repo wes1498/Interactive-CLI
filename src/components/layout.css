@@ -29,19 +29,16 @@ header {
 .text {
   display: block;
 }
-div {
-  display: block;
-}
 .content {
-
   text-align: justify;
   padding-top: 0rem;
 }
 main {
   text-align: justify;
-  /* flex-direction: row;
+  display: block;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start; */
+  align-items: flex-start;
   font-family: 'Times New Roman', Times, serif;
   font-size: small;
   color: #000;
@@ -50,8 +47,8 @@ main {
   margin-left: 500px; */
   margin-block-start: 1em;
   margin-block-end: 1em;
-  margin-inline-start: 500px;
-  margin-inline-end: 500px;
+  margin-inline-start: 39%;
+  margin-inline-end: 39%;
 }
 menu,
 nav,
@@ -510,8 +507,8 @@ hr {
   text-align: center;
   color: #000;
   border-width:0;
-  margin-left: 540px;
-  margin-right: 540px;
+  margin-left: 44%;
+  margin-right: 44%;
   margin-top: 11px;
   margin-bottom: 11px;
   padding-top: 0rem;

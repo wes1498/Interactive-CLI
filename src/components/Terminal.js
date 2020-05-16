@@ -1,49 +1,42 @@
 import React, { Component } from "react"
-import { ReactTerminal } from "react-terminal-component"
-import ReactDOMServer from 'react-dom/server'
+import { ReactTerminal } from "../../terminal-component/src"
+import ReactDOMServer from "react-dom/server"
 import {
   EmulatorState,
   OutputFactory,
-  CommandMapping,
   FileSystem,
   Outputs,
-  defaultCommandMapping,
   Emulator,
 } from "../../terminal/src"
 
-const welcomeMessage = <div>
-<b style={{color: "aqua"}}>Hello, My name is Wesley Sequeira!</b>
-<p>Enjoy your stay.</p>
-Press ` to minimize the terminal. Available commands are:
-<p>
-  <span style={{color: "red"}}>cd</span>, <span style={{color: "red"}}>ls</span>, <span style={{color: "red"}}>cat</span>, <span style={{color: "red"}}>open</span> (opens file like pdf and jpg)
-</p>
-</div>
-const welcomeMessage2 =<div
-dangerouslySetInnerHTML={{
-  __html: <div>
-  <b style={{color: "aqua"}}>Hello, My name is Wesley Sequeira!</b>
-  <p>Enjoy your stay.</p>
-  Press ` to minimize the terminal. Available commands are:
-  <p>
-    <span style={{color: "red"}}>cd</span>, <span style={{color: "red"}}>ls</span>, <span style={{color: "red"}}>cat</span>, <span style={{color: "red"}}>open</span> (opens file like pdf and jpg)
-  </p>
+const welcomeMessage = (
+  <div>
+    <b style={{ color: "aqua" }}>Hello, My name is Wesley Sequeira!</b>
+    <p>Enjoy your stay.</p>
+    Press ` to minimize the terminal. Available commands are:
+    <p>
+      <span style={{ color: "red" }}>cd</span>,{" "}
+      <span style={{ color: "red" }}>ls</span>,{" "}
+      <span style={{ color: "red" }}>cat</span>,{" "}
+      <span style={{ color: "red" }}>open</span> (opens file like pdf and jpg)
+    </p>
   </div>
-}}></div>
+)
 
 class Terminal extends Component {
   constructor() {
     super()
-    
-    const textOutput = OutputFactory.makeTextOutput(
-      welcomeMessage
-    )
+
+    const textOutput = OutputFactory.makeTextOutput(welcomeMessage)
     const customOutputs = Outputs.create([textOutput])
 
     const customFileSystem = FileSystem.create({
       "/AboutMe": {},
       "/Projects": {},
-      "/welcome.txt": { content: ReactDOMServer.renderToStaticMarkup(welcomeMessage2), canModify: false },
+      "/welcome.txt": {
+        content: ReactDOMServer.renderToStaticMarkup(welcomeMessage),
+        canModify: false,
+      },
       "/AboutMe/Resume.pdf": {
         content: "This is a text file",
         canModify: false,
@@ -68,20 +61,7 @@ class Terminal extends Component {
         content: "This is a text file",
         canModify: false,
       },
-    })
-
-    const commandMapping = CommandMapping.create({
-      ...defaultCommandMapping,
-      'open': {
-        'function': (state, opts) => {
-          const input = opts.join(' ');
-
-          return {
-            output: OutputFactory.makeTextOutput(input)
-          };
-        },
-        'optDef': {}
-      }
+      "/AboutMe/a/b/cddd/d/hello.txt": { content: "This is a text file" },
     })
 
     this.state = {
@@ -91,19 +71,21 @@ class Terminal extends Component {
         outputs: customOutputs,
       }),
       inputStr: "",
-      promptSymbol: "wesley:/~ ",
-      currentDir: "",
-      showTerminal: false
+      promptSymbol: "wesley:~",
+      isRoot: true,
+      promptPath: "",
+      showTerminal: false,
     }
   }
 
   render() {
     return (
-       <div id='___terminal'>
+      <div id="___terminal">
         <ReactTerminal
           emulatorState={this.state.emulatorState}
           inputStr={this.state.inputStr}
-          promptSymbol={this.state.promptSymbol + this.state.currentDir}
+          promptSymbol={this.state.promptSymbol}
+          promptPath={this.state.promptPath}
           theme={{
             background: "#141313",
             promptSymbolColor: "#6effe6",
