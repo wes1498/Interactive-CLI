@@ -8,6 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.link { color: lightskyblue;
+        text-decoration: none; }
+.link:hover {color:#00FF00;}
 article,
 aside,
 details,

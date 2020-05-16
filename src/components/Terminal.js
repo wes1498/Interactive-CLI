@@ -1,6 +1,6 @@
 import React, { Component } from "react"
+import "./layout.css"
 import { ReactTerminal } from "../../terminal-component/src"
-import ReactDOMServer from "react-dom/server"
 import {
   EmulatorState,
   OutputFactory,
@@ -22,15 +22,21 @@ const welcomeMessage = (
     </p>
   </div>
 )
+const contact = (
+  <div>
+    <br/>
+    <p><span style={{ color: "lightgrey" }}>Email: </span> wesley.sequeira@hotmail.com<br/><br/>
+      <span style={{ color: "lightgrey" }}>Linkedin: </span><a class="link" href="https://www.linkedin.com/in/wesleysequeira/">https://www.linkedin.com/in/wesleysequeira/</a><br/><br/>
+      <span style={{ color: "lightgrey" }}>Github: </span> <a class="link" href="https://github.com/wes1498">https://github.com/wes1498</a>
+    </p>
+  </div>
+)
 
 class Terminal extends Component {
   constructor() {
     super()
-
     const textOutput = OutputFactory.makeTextOutput(welcomeMessage)
     const customOutputs = Outputs.create([textOutput])
-    const textOutputContent = textOutput.content
-
     const customFileSystem = FileSystem.create({
       "/AboutMe": {},
       "/Projects": {},
@@ -47,7 +53,7 @@ class Terminal extends Component {
         canModify: false,
       },
       "/AboutMe/summary.txt": {
-        content: "This is a text file",
+        content: OutputFactory.makeTextOutput(contact),
         canModify: false,
       },
       "/Projects/load-handler.git": {
@@ -61,7 +67,7 @@ class Terminal extends Component {
       "/Projects/hamiltonian-paths.git": {
         content: "This is a text file",
         canModify: false,
-      },
+      }
     })
 
     this.state = {
@@ -88,9 +94,9 @@ class Terminal extends Component {
           promptPath={this.state.promptPath}
           theme={{
             background: "#141313",
-            promptSymbolColor: "#6effe6",
-            commandColor: "#fcfcfc",
-            outputColor: "#fcfcfc",
+            promptSymbolColor: "lightgreen",
+            commandColor: "lightgrey",
+            outputColor: "lightgrey",
             errorOutputColor: "#ff89bd",
             fontSize: "0.8rem",
             spacing: "1%",
