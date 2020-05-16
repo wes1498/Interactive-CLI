@@ -3,7 +3,7 @@ export const commandNames = [
   'cd',
   'clear',
   'history',
-  'ls',
+  'ls'
 ];
 
 export default commandNames.reduce((mapping, commandName) => {

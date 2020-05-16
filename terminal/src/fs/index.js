@@ -1,10 +1,10 @@
-import * as DirOp1 from './operations-with-permissions/directory-operations';
-import * as FileOp1 from './operations-with-permissions/file-operations';
+import * as _DirOp from './operations-with-permissions/directory-operations';
+import * as _FileOp from './operations-with-permissions/file-operations';
 
 // export default {
 //   DirOp,
 //   FileOp
 // };
 
-export const DirOp = DirOp1;
-export const FileOp = FileOp1;
+export const DirOp = _DirOp;
+export const FileOp = _FileOp;

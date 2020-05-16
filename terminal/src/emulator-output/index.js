@@ -1,9 +1,9 @@
-import * as OutputFactory1 from './output-factory';
-import * as OutputType1 from './output-type';
+import * as _OutputFactory from './output-factory';
+import * as _OutputType from './output-type';
 
 // export default {
 //   OutputFactory, OutputType
 // };
 
-export const OutputFactory = OutputFactory1;
-export const OutputType = OutputType1;
+export const OutputFactory = _OutputFactory;
+export const OutputType = _OutputType;

@@ -26,7 +26,7 @@ export const fsErrorType = {
  */
 export const makeError = (fsErrorType, message = '') => {
   return {
-    source: 'fs',
+    source: 'ws',
     type: fsErrorType,
     message
   };

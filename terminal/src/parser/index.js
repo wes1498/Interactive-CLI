@@ -1,6 +1,6 @@
-import * as OptionParser1 from './option-parser';
+import * as _OptionParser from './option-parser';
 
 // export default {
 //   OptionParser
 // };
-export const OptionParser = OptionParser1;
+export const OptionParser = _OptionParser;

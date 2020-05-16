@@ -43,6 +43,27 @@ export const readFile = (fs, filePath) => {
     file: fs.get(filePath)
   };
 };
+/**
+ * Opens a file (pdf or jpg)
+ * @param  {Map}     fs       file system
+ * @param  {string}  dirPath  directory of the file to check for existence
+ * @param  {string}  fileName file name to check for existence
+ * @return {void}          opens file in new window
+ */
+export const openFile = (fs, filePath) => {
+  if (hasDirectory(fs, filePath)) {
+    return {
+      err: makeError(fsErrorType.IS_A_DIRECTORY)
+    };
+  }
+
+  if (!hasFile(fs, filePath)) {
+    return {
+      err: makeError(fsErrorType.NO_SUCH_FILE)
+    };
+  }
+
+}
 
 /**
  * Write a new file to the file system

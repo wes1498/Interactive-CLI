@@ -1,41 +1,25 @@
 import React, { Component } from "react"
 import "./layout.css"
 import { ReactTerminal } from "../../terminal-component/src"
+import {WELCOME_MESSAGE,CONTACT_INFO} from "../constants/constants"
+import resume from "../documents/Resume.pdf"
 import {
   EmulatorState,
   OutputFactory,
   FileSystem,
   Outputs,
   Emulator,
+  defaultCommandMapping,
+  CommandMapping
 } from "../../terminal/src"
+import {makeError, fsErrorType} from '../../terminal/src/fs/fs-error'
 
-const welcomeMessage = (
-  <div>
-    <b style={{ color: "aqua" }}>Hello, My name is Wesley Sequeira!</b>
-    <p>Enjoy your stay.</p>
-    Press ` to minimize the terminal. Available commands are:
-    <p>
-      <span style={{ color: "red" }}>cd</span>,{" "}
-      <span style={{ color: "red" }}>ls</span>,{" "}
-      <span style={{ color: "red" }}>cat</span>,{" "}
-      <span style={{ color: "red" }}>open</span> (opens file like pdf and jpg)
-    </p>
-  </div>
-)
-const contact = (
-  <div>
-    <br/>
-    <p><span style={{ color: "lightgrey" }}>Email: </span> wesley.sequeira@hotmail.com<br/><br/>
-      <span style={{ color: "lightgrey" }}>Linkedin: </span><a class="link" href="https://www.linkedin.com/in/wesleysequeira/">https://www.linkedin.com/in/wesleysequeira/</a><br/><br/>
-      <span style={{ color: "lightgrey" }}>Github: </span> <a class="link" href="https://github.com/wes1498">https://github.com/wes1498</a>
-    </p>
-  </div>
-)
+
 
 class Terminal extends Component {
   constructor() {
     super()
-    const textOutput = OutputFactory.makeTextOutput(welcomeMessage)
+    const textOutput = OutputFactory.makeTextOutput(WELCOME_MESSAGE)
     const customOutputs = Outputs.create([textOutput])
     const customFileSystem = FileSystem.create({
       "/AboutMe": {},
@@ -53,7 +37,7 @@ class Terminal extends Component {
         canModify: false,
       },
       "/AboutMe/summary.txt": {
-        content: OutputFactory.makeTextOutput(contact),
+        content: OutputFactory.makeTextOutput(CONTACT_INFO),
         canModify: false,
       },
       "/Projects/load-handler.git": {
@@ -70,11 +54,41 @@ class Terminal extends Component {
       }
     })
 
+    const customCommandMapping = CommandMapping.create({
+      ...defaultCommandMapping,
+      'open': {
+        'function': (state, opts) => {
+          console.log(state)
+          switch(opts[0]){
+            case 'Resume.pdf':
+              window.open(resume);
+              break;
+            case 'load-handler.git':
+              window.open('https://github.com/wes1498/Load-Handler');
+              break;
+            case 'tictactoe.git':
+              window.open('https://github.com/wes1498/TicTacToe');
+              break;
+            case 'hamiltonian-paths.git':
+              window.open('https://github.com/wes1498/Hamiltonion-Path');
+              break;
+            default:
+              console.log('Theres a print lag')
+              return {
+                output: OutputFactory.makeTextOutput("No such file")
+              };
+          }
+        },
+        'optDef': {}
+      }
+    })
+
     this.state = {
       emulator: new Emulator(),
       emulatorState: EmulatorState.create({
         fs: customFileSystem,
         outputs: customOutputs,
+        commandMapping: customCommandMapping
       }),
       inputStr: "",
       promptSymbol: "wesley:~",
