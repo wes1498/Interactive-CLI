@@ -8,9 +8,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.link { color: lightskyblue;
-        text-decoration: none; }
-.link:hover {color:#00FF00;}
+.link {
+  color: lightskyblue;
+  text-decoration: none;
+}
+.link:hover {
+  color: #00ff00;
+}
+
 article,
 aside,
 details,
@@ -27,10 +32,13 @@ header {
 
   padding-bottom: 0rem;
   padding-top: 5rem;
-
 }
 .text {
+  width: 100px;
+  /* word-wrap: break-word; */
+  text-align: right;
   display: block;
+  margin-right: 50%;
 }
 .content {
   text-align: justify;
@@ -42,7 +50,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: small;
   color: #000;
   line-height: 1.1rem;
@@ -278,12 +286,11 @@ h1 {
 }
 h2 {
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: medium;
   color: #000;
   max-width: 960;
   padding: 0rem 9rem;
-
 }
 h3 {
   margin-left: 0;
@@ -509,7 +516,7 @@ hr {
   background-color: #000;
   text-align: center;
   color: #000;
-  border-width:0;
+  border-width: 0;
   margin-left: 44%;
   margin-right: 44%;
   margin-top: 11px;

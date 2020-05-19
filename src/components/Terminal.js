@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./layout.css"
 import { ReactTerminal } from "../../terminal-component/src"
-import {WELCOME_MESSAGE,CONTACT_INFO} from "../constants/constants"
+import {WELCOME_MESSAGE,CONTACT_INFO,SUMMARY_MESSAGE} from "../constants/constants"
 import resume from "../documents/Resume.pdf"
 import {
   EmulatorState,
@@ -32,11 +32,11 @@ class Terminal extends Component {
         canModify: false,
       },
       "/AboutMe/contact.txt": {
-        content: "",
+        content: OutputFactory.makeTextOutput(CONTACT_INFO),
         canModify: false,
       },
       "/AboutMe/summary.txt": {
-        content: OutputFactory.makeTextOutput(CONTACT_INFO),
+        content: OutputFactory.makeTextOutput(SUMMARY_MESSAGE),
         canModify: false,
       },
       "/Projects/load-handler.git": {

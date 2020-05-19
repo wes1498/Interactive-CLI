@@ -39,7 +39,7 @@ const Layout = () => {
           As the integration between business and technology industries grow exponentially, it is crucial for business leaders to maintain both a technological and qualitative mindset to remain a valuable competitor.
         </main>
         <main>
-          For developers, please press ` on this page to open a terminal to navigate this website. If not or you're on mobile, click this paragraph and scroll down.
+          Please press ` on this page to open a terminal to navigate this website.
         </main>  
       <footer>
 
