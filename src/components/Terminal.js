@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import "./layout.css"
 import { ReactTerminal } from "../../terminal-component/src"
 import {WELCOME_MESSAGE,CONTACT_INFO,SUMMARY_MESSAGE} from "../constants/constants"
-import resume from "../documents/Resume.pdf"
+import resume from "../Resume.pdf"
 import {
   EmulatorState,
   OutputFactory,

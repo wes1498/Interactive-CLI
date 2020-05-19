@@ -6,9 +6,16 @@
  */
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import resume from '../Resume.pdf'
 
 import Header from "./header"
 import "./layout.css"
+
+library.add(fab,faFileAlt)
 
 const Layout = () => {
   const data = useStaticQuery(graphql`
@@ -42,7 +49,15 @@ const Layout = () => {
           Please press ` on this page to open a terminal to navigate this website.
         </main>  
       <footer>
-
+        <br/>
+        <a href="https://www.linkedin.com/in/wesleysequeira/" target="_blank"><FontAwesomeIcon icon={['fab', 'linkedin']} size="l"/></a>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/wes1498" target="_blank"><FontAwesomeIcon icon={['fab', 'github-square']}size="l"/></a>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href={resume} target="_blank"><FontAwesomeIcon icon={faFileAlt}size="l"/></a>
+        
       </footer>
     </div>
   )

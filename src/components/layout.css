@@ -21,7 +21,10 @@ aside,
 details,
 figcaption,
 figure,
-footer,
+footer {
+  display: block;
+  text-align: center;
+}
 header {
   text-align: center;
   display: block;
@@ -89,6 +92,7 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  color: #000;
 }
 a:active,
 a:hover {
