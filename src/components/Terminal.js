@@ -12,7 +12,6 @@ import {
   defaultCommandMapping,
   CommandMapping
 } from "../../terminal/src"
-import {makeError, fsErrorType} from '../../terminal/src/fs/fs-error'
 
 
 
@@ -29,11 +28,11 @@ class Terminal extends Component {
         canModify: false,
       },
       "/AboutMe/Resume.pdf": {
-        content: "This is a text file",
+        content: "this is a text file",
         canModify: false,
       },
       "/AboutMe/contact.txt": {
-        content: "This is a text file",
+        content: "",
         canModify: false,
       },
       "/AboutMe/summary.txt": {
@@ -41,15 +40,15 @@ class Terminal extends Component {
         canModify: false,
       },
       "/Projects/load-handler.git": {
-        content: "This is a text file",
+        content: "",
         canModify: false,
       },
       "/Projects/tictactoe.git": {
-        content: "This is a text file",
+        content: "",
         canModify: false,
       },
       "/Projects/hamiltonian-paths.git": {
-        content: "This is a text file",
+        content: "",
         canModify: false,
       }
     })
@@ -58,26 +57,7 @@ class Terminal extends Component {
       ...defaultCommandMapping,
       'open': {
         'function': (state, opts) => {
-          console.log(state)
-          switch(opts[0]){
-            case 'Resume.pdf':
-              window.open(resume);
-              break;
-            case 'load-handler.git':
-              window.open('https://github.com/wes1498/Load-Handler');
-              break;
-            case 'tictactoe.git':
-              window.open('https://github.com/wes1498/TicTacToe');
-              break;
-            case 'hamiltonian-paths.git':
-              window.open('https://github.com/wes1498/Hamiltonion-Path');
-              break;
-            default:
-              console.log('Theres a print lag')
-              return {
-                output: OutputFactory.makeTextOutput("No such file")
-              };
-          }
+          return this.openCmd(opts[0]);
         },
         'optDef': {}
       }
@@ -95,6 +75,97 @@ class Terminal extends Component {
       isRoot: true,
       promptPath: "",
       showTerminal: false,
+    }
+  }
+
+  // ugly ass code thats impossible to clean up
+  openCmd(opts){
+    switch(opts){
+      case 'Resume.pdf':
+        if(this.state.promptPath.includes("/AboutMe"))
+          window.open(resume);
+        else
+          return {
+            output: OutputFactory.makeTextOutput("No such file")
+          };
+        break;
+      case 'load-handler.git':
+        if(this.state.promptPath.includes('/Projects'))
+          window.open('https://github.com/wes1498/Load-Handler');
+        else
+        return {
+          output: OutputFactory.makeTextOutput("No such file")
+        };
+        break;
+      case 'tictactoe.git':
+        if(this.state.promptPath.includes('/Projects'))
+          window.open('https://github.com/wes1498/TicTacToe');
+        else
+        return {
+          output: OutputFactory.makeTextOutput("No such file")
+        };
+        break;
+      case 'hamiltonian-paths.git':
+        if(this.state.promptPath.includes('/Projects'))
+          window.open('https://github.com/wes1498/Hamiltonion-Path');
+        else
+        return {
+          output: OutputFactory.makeTextOutput("No such file")
+        };
+        break;
+      default:
+        return {
+          output: OutputFactory.makeTextOutput("No such file")
+        };
+    }
+    return {
+      output: OutputFactory.makeTextOutput("")
+    };
+  }
+
+  _onStateChange = (emulatorState, commandStr) => {
+    if (this.isDirectoryChange(commandStr)){
+      this.onDirectoryChange(commandStr)
+    }
+    this.setState({emulatorState,
+                   inputStr: ''});
+  }
+
+  isDirectoryChange(commandStr){
+    var str = commandStr.split(" ")
+    if(str[0]==='cd') {return true}
+    return false
+  }
+
+  onDirectoryChange(commandStr){
+    var str = commandStr.split(" ")
+    var path = str[1];
+    if(path===''){return}
+    switch(path) {
+      case '.':
+        console.log("doesnt change command prompt. (current directory)")
+        break;
+      case '..':
+        if(this.state.promptPath === ''){
+          console.log("doesnt change prompt symbol, at root directory")
+        } else {
+          path = this.state.promptPath.split('/')
+          path.pop()
+          path.join('/')
+          console.log(path)
+          this.setState({promptPath: path});
+        }
+        break;
+      default:
+        if(path.charAt(path.length-1)==='/'){
+          path = path.splice(0, path.length - 1);
+        }
+        if(path.charAt(0)==='/'){
+          path = path.splice(1);
+        }
+        this.setState((state) => ({
+          promptPath: state.promptPath + '/' + path
+        }));
     }
   }
 
@@ -118,7 +189,7 @@ class Terminal extends Component {
             width: "100%",
             height: "50vh",
           }}
-          onStateChange={emulatorState => this.setState({ emulatorState })}
+          onStateChange={this._onStateChange}
         />
       </div>
     )

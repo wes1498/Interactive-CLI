@@ -39,47 +39,8 @@ class Terminal extends Component {
   }
 
   _onStateChange = (emulatorState, commandStr) => {
-    if (this.isDirectoryChange(commandStr)){
-      this.onDirectoryChange(commandStr)
-    }
-    this.setState({emulatorState,
-                   inputStr: ''});
-  }
-  isDirectoryChange(commandStr){
-    var str = commandStr.split(" ")
-    if(str[0]==='cd') {return true}
-    return false
-  }
-  onDirectoryChange(commandStr){
-    var str = commandStr.split(" ")
-    var path = str[1];
-    if(path===''){return}
-    switch(path) {
-      case '.':
-        console.log("doesnt change command prompt. (current directory)")
-        break;
-      case '..':
-        if(this.state.promptPath === ''){
-          console.log("doesnt change prompt symbol, at root directory")
-        } else {
-          path = this.state.promptPath.split('/')
-          path.pop()
-          path.join('/')
-          console.log(path)
-          this.setState({promptPath: path});
-        }
-        break;
-      default:
-        if(path.charAt(path.length-1)==='/'){
-          path = path.splice(0, path.length - 1);
-        }
-        if(path.charAt(0)==='/'){
-          path = path.splice(1);
-        }
-        this.setState((state) => ({
-          promptPath: state.promptPath + '/' + path
-        }));
-    }
+    const {onStateChange} = this.props;
+    onStateChange(emulatorState, commandStr);
   }
 
   render() {
@@ -106,7 +67,8 @@ Terminal.propTypes = {
   ...TerminalStateless.commonPropTypes,
   emulatorState: PropTypes.object,
   inputStr: PropTypes.string,
-  promptPath: PropTypes.string
+  promptPath: PropTypes.string,
+  onStateChange: PropTypes.func.isRequired
 };
 
 Terminal.defaultProps = {
