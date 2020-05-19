@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `WESLEY SEQUEIRA`,
     description: `Just a simple webpage to showcase my interests!`,
+    url: `https://wesleysequeira.com`,
+    image: `/images/me.jpg`,
     author: `Wesley Sequeira`,
   },
   plugins: [
