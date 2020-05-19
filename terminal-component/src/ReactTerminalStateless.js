@@ -79,6 +79,8 @@ class TerminalStateless extends Component {
 
         this._setInput(autoCompletedStr);
         break;
+      default:
+        break;
     }
   }
 
@@ -109,7 +111,7 @@ class TerminalStateless extends Component {
 
   render() {
     const {
-      acceptInput, autoFocus, clickToFocus, emulatorState, inputStr, theme, promptSymbol, promptPath, outputRenderers, terminalId
+      acceptInput, clickToFocus, emulatorState, inputStr, theme, promptSymbol, promptPath, outputRenderers, terminalId
     } = this.props;
     let inputControl, focusProps;
 
@@ -129,7 +131,6 @@ class TerminalStateless extends Component {
       inputControl = (
         <CommandInput
           ref={(ref) => { this.inputRef = ref; }}
-          autoFocus={autoFocus}
           promptSymbol={promptSymbol}
           promptPath={promptPath}
           value={inputStr}

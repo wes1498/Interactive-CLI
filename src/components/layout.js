@@ -50,13 +50,13 @@ const Layout = () => {
         </main>  
       <footer>
         <br/>
-        <a href="https://www.linkedin.com/in/wesleysequeira/" target="_blank"><FontAwesomeIcon icon={['fab', 'linkedin']} size="l"/></a>
+        <a href="https://www.linkedin.com/in/wesleysequeira/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'linkedin']} size="l"/></a>
         
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com/wes1498" target="_blank"><FontAwesomeIcon icon={['fab', 'github-square']}size="l"/></a>
+        <a href="https://github.com/wes1498" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'github-square']}size="l"/></a>
         
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href={resume} target="_blank"><FontAwesomeIcon icon={faFileAlt}size="l"/></a>
+        <a href={resume} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFileAlt}size="l"/></a>
         
       </footer>
     </div>

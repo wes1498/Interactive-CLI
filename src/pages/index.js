@@ -30,7 +30,7 @@ class IndexPage extends Component {
     return (
       <>
       {showTerminal && <Terminal/>}
-        <SEO title="Home" />
+        <SEO title="Wesley" />
         <Layout/>
       </>
     )

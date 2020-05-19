@@ -2,10 +2,10 @@ import PropTypes from "prop-types"
 import React from "react"
 import "./layout.css"
 
-const Header = () => (
+const Header = ({ siteTitle }) => (
   <div>
     <header>
-      WESLEY SEQUEIRA
+      {siteTitle}
     </header>
     <hr/>
       <h2>
@@ -20,7 +20,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: `hahaha`,
+  siteTitle: ``,
 }
 
 export default Header

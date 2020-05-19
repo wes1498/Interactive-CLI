@@ -10,7 +10,7 @@ class CommandInput extends Component {
   }
 
   render() {
-    const { autoFocus, promptSymbol, value, onChange, onSubmit, onKeyDown, promptPath } = this.props;
+    const { promptSymbol, value, onChange, onSubmit, onKeyDown, promptPath } = this.props;
 
     return (
       <div className={'terminalInput'}>
@@ -23,7 +23,6 @@ class CommandInput extends Component {
         >
           <PromptSymbol>{promptSymbol + promptPath}</PromptSymbol>
           <StyledInput
-            autoFocus={autoFocus}
             onChange={e => {
               e.persist();
               onChange(e);
