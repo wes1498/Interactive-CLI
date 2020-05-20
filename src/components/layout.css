@@ -31,7 +31,8 @@ header {
   letter-spacing: 0.1rem;
   transform: scale(1,1.1);
   /* font-family: ; */
-  font-size: 2vw;
+  /* font-size: 2vw; */
+  font-size: large;
   color: #000;
 
   padding-bottom: 0rem;
@@ -41,7 +42,7 @@ h2 {
   text-align: center;
   display: block;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.3vw;
+  font-size: medium;
   color: #000;
   /* max-width: 960; */
   /* padding: 0rem 9rem; */
@@ -54,9 +55,12 @@ h2 {
   margin-right: 50%;
 }
 .content {
-  max-width: 500px;
+  max-width: 300%;
   /* text-align: justify;
   padding-top: 0rem; */
+  writing-mode: horizontal-tb;
+  direction: ltr;
+  text-orientation: initial;
   margin-inline-start: 38%;
   margin-inline-end: 38%;
 }
@@ -77,10 +81,10 @@ main {
   text-align: justify;
   display: block;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  /* flex-wrap: wrap;
+  align-items: flex-start; */
   font-family: "Times New Roman", Times, serif;
-  font-size: 1vw;
+  font-size: small;
   color: #000;
   line-height: 1.1rem;
   /* margin-right: 500px;

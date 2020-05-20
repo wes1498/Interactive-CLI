@@ -68,7 +68,7 @@ const Layout = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={["fab", "linkedin"]} size="l" />
+          <FontAwesomeIcon icon={["fab", "linkedin"]} size="lg" />
         </a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a
@@ -76,11 +76,11 @@ const Layout = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={["fab", "github-square"]} size="l" />
+          <FontAwesomeIcon icon={["fab", "github-square"]} size="lg" />
         </a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href={resume} target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faFileAlt} size="l" />
+          <FontAwesomeIcon icon={faFileAlt} size="lg" />
         </a>
         <br/>
         <br/>

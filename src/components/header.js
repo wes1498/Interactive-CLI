@@ -9,7 +9,7 @@ const Header = ({ siteTitle }) => (
     </header>
     <hr/>
       <h2>
-      SOFTWARE DEVELOPER
+      Software Developer
     </h2>
     <hr/>
   </div>
