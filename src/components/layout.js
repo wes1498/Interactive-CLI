@@ -82,6 +82,9 @@ const Layout = () => {
         <a href={resume} target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faFileAlt} size="l" />
         </a>
+        <br/>
+        <br/>
+        <br/>
       </footer>
     </div>
   )
