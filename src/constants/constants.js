@@ -36,24 +36,31 @@ export const CONTACT_INFO = (
 export const SUMMARY_MESSAGE = (
   <div class="text">
     <p>
-    <br />
+      <br />
       Hello, my name is Wesley Sequeira. I am currently a fourth year student
-      and the <b style={{ color: "aqua" }}>University of British Columbia</b>{" "}
+      and the <b style={{ color: "aqua" }}>
+        University of British Columbia
+      </b>{" "}
       studying <b style={{ color: "aqua" }}>Business and Computer Science</b>.
     </p>
-    I am experienced in{" "}
-    <span style={{ color: "pink" }}>Object Oriented C#</span> development with{" "}
-    <span style={{ color: "pink" }}>.NET Standard Library</span> in Scrum-based
-    teams. <br />
-    Currently, I am building a multiplayer Tic-Tac-Toe game using the{" "}
-    <span style={{ color: "pink" }}>client-server architecture</span>, striving
-    to become a stronger <span style={{ color: "pink" }}>C++ Developer</span>.
+    I am an experienced <b style={{ color: "pink" }}>C#.NET </b> developer with
+    an in depth understanding of the{" "}
+    <b style={{ color: "pink" }}>.NET Standard Library</b>,{" "}
+    <b style={{ color: "pink" }}>T-SQL/MSQL Server</b>, and the{" "}
+    <b style={{ color: "pink" }}>MVC Framework</b> for web development.
+    <br />
+    Currently, I am becoming a stronger{" "}
+    <b style={{ color: "pink" }}>C++ Developer</b> through building a
+    multiplayer Tic-Tac-Toe game using the{" "}
+    <b style={{ color: "pink" }}>client-server architecture</b>.
     <br />
     <br />
-    My interest in finance motivates me to read biographys by contrarian
-    investors like Carl Icahn and study macro-economic events.
+    My interest in finance motivates me to read biographies by contrarian
+    investors like Carl Icahn while studying macro-economic analysis through my
+    economics courses.
     <br />
-    During my second-year, I was a co-Technology officer for{" "}
+    During my second-year, I was a{" "}
+    <b style={{ color: "pink" }}>co-Technology officer </b>for{" "}
     <a
       class="link"
       href="http://almainvestments.herokuapp.com/index.html?fbclid=IwAR1Bez95b9UnCw7Leh5mNG9kiu3IhlnoKdR5VwSIKPqVJo-uIW0av21liUU"
@@ -64,7 +71,7 @@ export const SUMMARY_MESSAGE = (
     <br />
     We built company valuation reports to achieve a strong understanding of the
     securities markets. <br />I am curious about{" "}
-    <span style={{ color: "pink" }}>quantamental investing</span> and the impact
+    <b style={{ color: "pink" }}>quantamental investing</b> and the impact
     technology has in the complex world of finance.
     <br />
     <br />

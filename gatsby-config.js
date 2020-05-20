@@ -1,10 +1,18 @@
+const website = require('./config/website')
+
+const pathPrefix = website.pathPrefix === '/' ? '' : website.pathPrefix
+
 module.exports = {
+  pathPrefix: website.pathPrefix,
   siteMetadata: {
-    title: `WESLEY SEQUEIRA`,
-    description: `Just a simple webpage to showcase my interests!`,
-    url: `https://wesleysequeira.com`,
-    image: `/images/me.jpg`,
-    author: `Wesley Sequeira`,
+    title: website.title,
+    description: website.description,
+    url: website.url,
+    image: website.image,
+    author: website.author,
+    headline: website.headline,
+    siteLanguage: website.siteLanguage,
+    ogLanguage: website.ogLanguage,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -20,17 +28,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#FFFFFF`,
-        theme_color: `#000000`,
-        display: `minimal-ui`,
-        //icon: `src/images/w2icon.png`, // This path is relative to the root of the site.
+        name: website.title,
+        short_name: website.titleAlt,
+        start_url: pathPrefix,
+        background_color: website.backgroundColor,
+        theme_color: website.themeColor,
+        display: `standalone`,
+        icon: website.favicon, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
+    //`gatsby-plugin-netlify`,
   ],
 }

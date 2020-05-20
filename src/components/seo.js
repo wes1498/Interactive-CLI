@@ -10,16 +10,20 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
+function SEO({ description, lang, meta, title, image: metaImage, pathname, headline }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
+          buildTime
           siteMetadata {
             defaultTitle: title
             defaultDescription: description
             siteUrl: url
             author
+            headline
+            siteLanguage
+            ogLanguage
           }
         }
       }
@@ -32,7 +36,66 @@ function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
       : null
 
   const metaDescription = description || site.siteMetadata.description
+  const metaHeadline = headline || site.siteMetadata.headline
   const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
+
+  // schema.org in JSONLD format
+  // https://developers.google.com/search/docs/guides/intro-structured-data
+  // You can fill out the 'author', 'creator' with more data or another type (e.g. 'Organization')
+
+  const schemaOrgWebPage = {
+    '@context': 'http://schema.org',
+    '@type': 'WebPage',
+    url: site.siteMetadata.siteUrl,
+    metaHeadline,
+    inLanguage: site.siteMetadata.siteLanguage,
+    mainEntityOfPage: site.siteMetadata.siteUrl,
+    description: site.siteMetadata.defaultDescription,
+    name: site.siteMetadata.defaultTitle,
+    author: {
+      '@type': 'Person',
+      name: site.siteMetadata.author,
+    },
+    copyrightHolder: {
+      '@type': 'Person',
+      name: site.siteMetadata.author,
+    },
+    copyrightYear: '2020',
+    creator: {
+      '@type': 'Person',
+      name: site.siteMetadata.author,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: site.siteMetadata.author,
+    },
+    datePublished: '2020-05-20T12:30:00+01:00',
+    dateModified: site.buildTime,
+    image: {
+      '@type': 'ImageObject',
+      url: `${site.siteMetadata.siteUrl}${image}`,
+    },
+  }
+    // Initial breadcrumb list
+
+    const itemListElement = [
+      {
+        '@type': 'ListItem',
+        item: {
+          '@id': site.siteMetadata.siteUrl,
+          name: 'Homepage',
+        },
+        position: 1,
+      },
+    ]
+
+  const breadcrumb = {
+    '@context': 'http://schema.org',
+    '@type': 'BreadcrumbList',
+    description: 'Breadcrumbs list',
+    name: 'Breadcrumbs',
+    itemListElement,
+  }
 
   return (
     <Helmet
@@ -107,7 +170,10 @@ function SEO({ description, lang, meta, title, image: metaImage, pathname }) {
               },
             ]
       ).concat(meta)}
-    />
+    >
+      <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+    </Helmet>
   )
 }
 
@@ -115,6 +181,7 @@ SEO.defaultProps = {
   description: ``,
   lang: `en`,
   meta: [],
+  headline: ``,
 }
 
 SEO.propTypes = {
@@ -128,6 +195,7 @@ SEO.propTypes = {
     width: PropTypes.number.isRequired,
   }),
   pathname: PropTypes.string,
+  headline: PropTypes.string,
 }
 
 export default SEO
