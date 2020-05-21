@@ -6,7 +6,7 @@ module.exports = {
     headline: `Wesley's portfolio`, // Headline for schema.org JSONLD
     url: `https://wesleysequeira.com`, // Domain of your site. No trailing slash!
     siteLanguage: `en`, // Language Tag on <html> element
-    image: `src/images/me.jpg`, // Used for SEO
+    image: `/logos/me.jpg`, // Used for SEO
     ogLanguage: `en_US`, // Facebook Language
   
     // JSONLD / Manifest
