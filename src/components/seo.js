@@ -16,7 +16,9 @@ function SEO({
   meta,
   title,
   image,
-  pathname
+  pathname,
+  article,
+  node
 }) {
   const { site } = useStaticQuery(query)
 
@@ -96,6 +98,56 @@ function SEO({
       position: 1,
     },
   ]
+  let schemaArticle = null
+
+  if (article) {
+    schemaArticle = {
+      '@context': 'http://schema.org',
+      '@type': 'Article',
+      author: {
+        '@type': 'Person',
+        name: author,
+      },
+      copyrightHolder: {
+        '@type': 'Person',
+        name: author,
+      },
+      copyrightYear: '2019',
+      creator: {
+        '@type': 'Person',
+        name: author,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: author,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}${defaultImage}`,
+        },
+      },
+      datePublished: node.first_publication_date,
+      dateModified: node.last_publication_date,
+      description: seo.description,
+      headline: seo.title,
+      inLanguage: siteLanguage,
+      url: seo.url,
+      name: seo.title,
+      image: {
+        '@type': 'ImageObject',
+        url: seo.image,
+      },
+      mainEntityOfPage: seo.url,
+    }
+    // Push current blogpost into breadcrumb list
+    itemListElement.push({
+      '@type': 'ListItem',
+      item: {
+        '@id': seo.url,
+        name: seo.title,
+      },
+      position: 2,
+    })
+  }
 
   const breadcrumb = {
     "@context": "http://schema.org",
@@ -106,90 +158,100 @@ function SEO({
   }
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.siteUrl}`}
-      link={
-        canonical
-          ? [
-              {
-                rel: "canonical",
-                href: canonical,
-              },
-            ]
-          : []
-      }
-      meta={[
-        {
-          name: `description`,
-          content: seo.description,
-        },
-        {
-          name:  `og:image`,
-          conten: seo.image
-        },
-        {
-          property: `og:description`,
-          content: seo.description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          name: `twitter:creator`,
-          content: author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: seo.description,
-        },
-      ]
-        // .concat(
-        //   metaImage
-        //     ? [
-        //         {
-        //           property: "og:image",
-        //           content: image,
-        //         },
-        //         {
-        //           property: "og:image:width",
-        //           content: metaImage.width,
-        //         },
-        //         {
-        //           property: "og:image:height",
-        //           content: metaImage.height,
-        //         },
-        //         {
-        //           name: "twitter:card",
-        //           content: "summary_large_image",
-        //         },
-        //       ]
-        //     : [
-        //         {
-        //           name: "twitter:card",
-        //           content: "summary",
-        //         },
-        //       ]
-        // )
-        .concat(meta)}
-    >
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgWebPage)}
-      </script>
-      <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
-    </Helmet>
+    <Helmet title={seo.title}>
+    <html lang={siteLanguage} />
+    <meta name="description" content={seo.description} />
+    <meta name="image" content={seo.image} />
+    <meta name="gatsby-starter" content="Gatsby Starter Prismic" />
+    {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
+    {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
+    {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
+    <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+  </Helmet>
+    // <Helmet
+    //   htmlAttributes={{
+    //     lang,
+    //   }}
+    //   title={title}
+    //   titleTemplate={`%s | ${site.siteMetadata.siteUrl}`}
+    //   link={
+    //     canonical
+    //       ? [
+    //           {
+    //             rel: "canonical",
+    //             href: canonical,
+    //           },
+    //         ]
+    //       : []
+    //   }
+    //   meta={[
+    //     {
+    //       name: `description`,
+    //       content: seo.description,
+    //     },
+    //     {
+    //       name:  `og:image`,
+    //       conten: seo.image
+    //     },
+    //     {
+    //       property: `og:description`,
+    //       content: seo.description,
+    //     },
+    //     {
+    //       property: `og:type`,
+    //       content: `website`,
+    //     },
+    //     {
+    //       property: `og:title`,
+    //       content: title,
+    //     },
+    //     {
+    //       name: `twitter:creator`,
+    //       content: author,
+    //     },
+    //     {
+    //       name: `twitter:title`,
+    //       content: title,
+    //     },
+    //     {
+    //       name: `twitter:description`,
+    //       content: seo.description,
+    //     },
+    //   ]
+    //     // .concat(
+    //     //   metaImage
+    //     //     ? [
+    //     //         {
+    //     //           property: "og:image",
+    //     //           content: image,
+    //     //         },
+    //     //         {
+    //     //           property: "og:image:width",
+    //     //           content: metaImage.width,
+    //     //         },
+    //     //         {
+    //     //           property: "og:image:height",
+    //     //           content: metaImage.height,
+    //     //         },
+    //     //         {
+    //     //           name: "twitter:card",
+    //     //           content: "summary_large_image",
+    //     //         },
+    //     //       ]
+    //     //     : [
+    //     //         {
+    //     //           name: "twitter:card",
+    //     //           content: "summary",
+    //     //         },
+    //     //       ]
+    //     // )
+    //     .concat(meta)}
+    // >
+    //   <script type="application/ld+json">
+    //     {JSON.stringify(schemaOrgWebPage)}
+    //   </script>
+    //   <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+    // </Helmet>
   )
 }
 
@@ -203,6 +265,8 @@ SEO.defaultProps = {
   image: null,
   pathname: null,
   headline: ``,
+  article: false,
+  node: null,
 }
 
 SEO.propTypes = {
@@ -217,6 +281,8 @@ SEO.propTypes = {
   }),
   pathname: PropTypes.string,
   headline: PropTypes.string,
+  article: PropTypes.bool,
+  node: PropTypes.object,
 }
 
 const query = graphql`
