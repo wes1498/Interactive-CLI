@@ -15,7 +15,7 @@ function SEO({
   lang,
   meta,
   title,
-  image: metaImage,
+  image,
   pathname
 }) {
   const { site } = useStaticQuery(query)
@@ -41,9 +41,9 @@ function SEO({
     url: `${siteUrl}${pathname}`,
   }
 
-  const image = `${site.siteMetadata.siteUrl}${
-    metaImage.src || site.siteMetadata.image
-  }`
+  // const image = `${site.siteMetadata.siteUrl}${
+  //   metaImage.src || site.siteMetadata.image
+  // }`
 
   const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
 
@@ -128,12 +128,8 @@ function SEO({
           content: seo.description,
         },
         {
-          name:  `image`,
+          name:  `og:image`,
           conten: seo.image
-        },
-        {
-          property: `og:title`,
-          content: title,
         },
         {
           property: `og:description`,
@@ -142,6 +138,10 @@ function SEO({
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:title`,
+          content: title,
         },
         {
           name: `twitter:creator`,
@@ -156,33 +156,33 @@ function SEO({
           content: seo.description,
         },
       ]
-        .concat(
-          metaImage
-            ? [
-                {
-                  property: "og:image",
-                  content: image,
-                },
-                {
-                  property: "og:image:width",
-                  content: metaImage.width,
-                },
-                {
-                  property: "og:image:height",
-                  content: metaImage.height,
-                },
-                {
-                  name: "twitter:card",
-                  content: "summary_large_image",
-                },
-              ]
-            : [
-                {
-                  name: "twitter:card",
-                  content: "summary",
-                },
-              ]
-        )
+        // .concat(
+        //   metaImage
+        //     ? [
+        //         {
+        //           property: "og:image",
+        //           content: image,
+        //         },
+        //         {
+        //           property: "og:image:width",
+        //           content: metaImage.width,
+        //         },
+        //         {
+        //           property: "og:image:height",
+        //           content: metaImage.height,
+        //         },
+        //         {
+        //           name: "twitter:card",
+        //           content: "summary_large_image",
+        //         },
+        //       ]
+        //     : [
+        //         {
+        //           name: "twitter:card",
+        //           content: "summary",
+        //         },
+        //       ]
+        // )
         .concat(meta)}
     >
       <script type="application/ld+json">
