@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/wes1498/Interactive-CLI.svg?style=svg&circle-token=0d7f85206918fac74ac0f392133a4e27c938bb6c)](LINK)
 
-[Demo Website](http://wesleysequeira.netlify.app/)
+[www.wesleysequeira.com](http://wesleysequeira.netlify.app/)
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/LekoArts/gatsby-starter-prismic)
 
