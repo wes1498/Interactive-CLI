@@ -55,14 +55,15 @@ h2 {
   margin-right: 50%;
 }
 .content {
-  max-width: 300%;
+  max-width: 300px;
+  margin: auto;
   /* text-align: justify;
   padding-top: 0rem; */
   writing-mode: horizontal-tb;
   direction: ltr;
   text-orientation: initial;
-  margin-inline-start: 38%;
-  margin-inline-end: 38%;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
 }
 hr {
   height: 4px;
