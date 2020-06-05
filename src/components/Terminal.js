@@ -1,7 +1,11 @@
 import React, { Component } from "react"
 import "./layout.css"
 import { ReactTerminal } from "../../terminal-component/src"
-import {WELCOME_MESSAGE,CONTACT_INFO,SUMMARY_MESSAGE} from "../constants/constants"
+import {
+  WELCOME_MESSAGE,
+  CONTACT_INFO,
+  SUMMARY_MESSAGE,
+} from "../constants/constants"
 import resume from "../Resume.pdf"
 import {
   EmulatorState,
@@ -10,10 +14,8 @@ import {
   Outputs,
   Emulator,
   defaultCommandMapping,
-  CommandMapping
+  CommandMapping,
 } from "../../terminal/src"
-
-
 
 class Terminal extends Component {
   constructor() {
@@ -50,17 +52,17 @@ class Terminal extends Component {
       "/Projects/hamiltonian-paths.git": {
         content: "",
         canModify: false,
-      }
+      },
     })
 
     const customCommandMapping = CommandMapping.create({
       ...defaultCommandMapping,
-      'open': {
-        'function': (state, opts) => {
-          return this.openCmd(opts[0]);
+      open: {
+        function: (state, opts) => {
+          return this.openCmd(opts[0])
         },
-        'optDef': {}
-      }
+        optDef: {},
+      },
     })
 
     this.state = {
@@ -68,7 +70,7 @@ class Terminal extends Component {
       emulatorState: EmulatorState.create({
         fs: customFileSystem,
         outputs: customOutputs,
-        commandMapping: customCommandMapping
+        commandMapping: customCommandMapping,
       }),
       inputStr: "",
       promptSymbol: "wesley:~",
@@ -79,93 +81,108 @@ class Terminal extends Component {
   }
 
   // ugly ass code thats impossible to clean up
-  openCmd(opts){
-    switch(opts){
-      case 'Resume.pdf':
-        if(this.state.promptPath.includes("/AboutMe"))
-          window.open(resume);
+  openCmd(opts) {
+    switch (opts) {
+      case "Resume.pdf":
+        if (this.state.promptPath.includes("/AboutMe")) window.open(resume)
         else
           return {
-            output: OutputFactory.makeTextOutput("No such file")
-          };
-        break;
-      case 'load-handler.git':
-        if(this.state.promptPath.includes('/Projects'))
-          window.open('https://github.com/wes1498/Load-Handler');
+            output: OutputFactory.makeTextOutput("No such file"),
+          }
+        break
+      case "load-handler.git":
+        if (this.state.promptPath.includes("/Projects"))
+          window.open("https://github.com/wes1498/Load-Handler")
         else
-        return {
-          output: OutputFactory.makeTextOutput("No such file")
-        };
-        break;
-      case 'tictactoe.git':
-        if(this.state.promptPath.includes('/Projects'))
-          window.open('https://github.com/wes1498/TicTacToe');
+          return {
+            output: OutputFactory.makeTextOutput("No such file"),
+          }
+        break
+      case "tictactoe.git":
+        if (this.state.promptPath.includes("/Projects"))
+          window.open("https://github.com/wes1498/TicTacToe")
         else
-        return {
-          output: OutputFactory.makeTextOutput("No such file")
-        };
-        break;
-      case 'hamiltonian-paths.git':
-        if(this.state.promptPath.includes('/Projects'))
-          window.open('https://github.com/wes1498/Hamiltonion-Path');
+          return {
+            output: OutputFactory.makeTextOutput("No such file"),
+          }
+        break
+      case "hamiltonian-paths.git":
+        if (this.state.promptPath.includes("/Projects"))
+          window.open("https://github.com/wes1498/Hamiltonion-Path")
         else
-        return {
-          output: OutputFactory.makeTextOutput("No such file")
-        };
-        break;
+          return {
+            output: OutputFactory.makeTextOutput("No such file"),
+          }
+        break
       default:
         return {
-          output: OutputFactory.makeTextOutput("No such file")
-        };
+          output: OutputFactory.makeTextOutput("No such file"),
+        }
     }
     return {
-      output: OutputFactory.makeTextOutput("")
-    };
+      output: OutputFactory.makeTextOutput(""),
+    }
   }
 
   _onStateChange = (emulatorState, commandStr) => {
-    if (this.isDirectoryChange(commandStr)){
+    if (this.isDirectoryChange(commandStr)) {
       this.onDirectoryChange(commandStr)
     }
-    this.setState({emulatorState,
-                   inputStr: ''});
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        emulatorState,
+        inputStr: ""
+      }
+    })
   }
 
-  isDirectoryChange(commandStr){
+  isDirectoryChange(commandStr) {
     var str = commandStr.split(" ")
-    if(str[0]==='cd') {return true}
+    if (str[0] === "cd") {
+      return true
+    }
     return false
   }
 
-  onDirectoryChange(commandStr){
+  onDirectoryChange(commandStr) {
     var str = commandStr.split(" ")
-    var path = str[1];
-    if(path===''){return}
-    switch(path) {
-      case '.':
+    var path = str[1]
+    if (path === "") {
+      return
+    }
+    switch (path) {
+      case ".":
         console.log("doesnt change command prompt. (current directory)")
-        break;
-      case '..':
-        if(this.state.promptPath === ''){
+        break
+      case "..":
+        if (this.state.promptPath === "") {
           console.log("doesnt change prompt symbol, at root directory")
         } else {
-          path = this.state.promptPath.split('/')
+          path = this.state.promptPath.split("/")
           path.pop()
-          path.join('/')
+          path.join("/")
           console.log(path)
-          this.setState({promptPath: path});
+          this.setState({ promptPath: path })
         }
-        break;
+        break
       default:
-        if(path.charAt(path.length-1)==='/'){
-          path = path.splice(0, path.length - 1);
+        // check if path exists
+        if (!path.includes("AboutMe") && !path.includes("Projects")) {
+          this.setState(state => ({
+            promptPath: state.promptPath,
+          }))
+          return
         }
-        if(path.charAt(0)==='/'){
-          path = path.splice(1);
+        if (path.charAt(path.length - 1) === "/") {
+          path = path.splice(0, path.length - 1)
         }
-        this.setState((state) => ({
-          promptPath: state.promptPath + '/' + path
-        }));
+        if (path.charAt(0) === "/") {
+          path = path.splice(1)
+        }
+        this.setState(state => ({
+          promptPath: state.promptPath + "/" + path,
+        }))
     }
   }
 
